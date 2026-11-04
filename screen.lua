@@ -471,4 +471,10 @@ function TrafficJamScreen:_updateButtons()
     if self.restart_btn then self.restart_btn:enableDisable(self.board:canUndo()) end
 end
 
+-- The level bank is only needed while a game is open: drop it when the
+-- screen closes (the next game reads it again).
+function TrafficJamScreen:onCloseWidget()
+    Levels.release()
+end
+
 return TrafficJamScreen
