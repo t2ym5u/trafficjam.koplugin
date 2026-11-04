@@ -233,6 +233,70 @@ describe("TrafficJamBoard", function()
         assert.is_true(Solver.isSolved(f.pos))
     end)
 
+    it("credits the optimal mark only for a win in the optimum with no hint", function()
+        -- In the optimum (2 moves).
+        local b = Board:new{ level = LEVEL, optimal = 2 }
+        local car_b = b:vehicleAt(2, 4)
+        assert.is_false(b:isOptimalWin())
+        b:slide(car_b, -1)
+        b:slide(1, 1)
+        assert.is_true(b:isOptimalWin())
+
+        -- One move over: no.
+        b = Board:new{ level = LEVEL, optimal = 2 }
+        local truck = b:vehicleAt(4, 4)
+        b:move(truck, 0)
+        b:slide(car_b, -1)
+        b:slide(1, 1)
+        assert.is_true(b:isWon())
+        assert.are.equal(3, b:getMoves())
+        assert.is_false(b:isOptimalWin())
+
+        -- A detour taken back with Undo doesn't count.
+        b = Board:new{ level = LEVEL, optimal = 2 }
+        b:move(truck, 0)
+        b:undoMove()
+        b:slide(car_b, -1)
+        b:slide(1, 1)
+        assert.is_true(b:isOptimalWin())
+
+        -- A hint only shown (first tap) is enough to rule it out, even after
+        -- a restart; a played hint too.
+        b = Board:new{ level = LEVEL, optimal = 2 }
+        b:noteHintSeen()
+        b:move(truck, 0)
+        b:restart()
+        b:slide(car_b, -1)
+        b:slide(1, 1)
+        assert.is_true(b:isWon())
+        assert.is_false(b:isOptimalWin())
+        b = Board:new{ level = LEVEL, optimal = 2 }
+        assert.is_true(b:applyHint(b:findHint()))
+        b:noteHintUsed()
+        b:slide(1, 1)
+        assert.is_true(b:isWon())
+        assert.is_false(b:isOptimalWin())
+
+        -- A new level forgets the hints.
+        b:setLevel(LEVEL, 2)
+        assert.is_nil(b.hint_seen)
+    end)
+
+    it("keeps the hint flag in the save; old saves have none", function()
+        local b = Board:new{ level = LEVEL, optimal = 2 }
+        b:noteHintSeen()
+        local c = Board:new()
+        assert.is_true(c:load(b:serialize()))
+        assert.is_true(c.hint_seen)
+        local old = Board:new{ level = LEVEL, optimal = 2 }:serialize()
+        old.hint_seen = nil
+        assert.is_true(c:load(old))
+        assert.is_nil(c.hint_seen)
+        c:slide(c:vehicleAt(2, 4), -1)
+        c:slide(1, 1)
+        assert.is_true(c:isOptimalWin())
+    end)
+
     it("refuses corrupt saves", function()
         local b = Board:new()
         assert.is_false(b:load(nil))

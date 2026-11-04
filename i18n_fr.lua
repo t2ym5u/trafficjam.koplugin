@@ -12,7 +12,6 @@ return {
     ["Level"]        = { fr = "Niveau", es = "Nivel", de = "Level" },
     ["Level: %1"]    = { fr = "Niveau : %1", es = "Nivel: %1", de = "Level: %1" },
     ["No. %1"]       = { fr = "Nº %1", es = "N.º %1", de = "Nr. %1" },
-    ["Solved: %1/%2"] = { fr = "Résolus : %1/%2", es = "Resueltos: %1/%2", de = "Gelöst: %1/%2" },
     ["Step back"]    = { fr = "Reculer", es = "Atrás", de = "Zurück" },
     ["Step forward"] = { fr = "Avancer", es = "Adelante", de = "Vor" },
     ["Solution: move %1/%2"] = { fr = "Solution : coup %1/%2", es = "Solución: movimiento %1/%2", de = "Lösung: Zug %1/%2" },
@@ -20,4 +19,8 @@ return {
     ["Solved in %1 moves (optimal: %2). Time: %3"] = { fr = "Résolu en %1 coups (optimal : %2). Temps : %3", es = "Resuelto en %1 movimientos (óptimo: %2). Tiempo: %3", de = "In %1 Zügen gelöst (optimal: %2). Zeit: %3" },
     ["Slide the marked vehicle to the dashed box."] = { fr = "Glissez le véhicule marqué au cadre pointillé.", es = "Desliza el vehículo marcado al recuadro discontinuo.", de = "Schiebe das markierte Fahrzeug in den gestrichelten Rahmen." },
     ["Hint played."] = { fr = "Astuce jouée.", es = "Pista jugada.", de = "Tipp ausgeführt." },
+    -- Same text as klotski / sokoban.
+    ["Solved: %1/%2 · minimum: %3"] = { fr = "Résolus : %1/%2 · au minimum : %3", es = "Resueltos: %1/%2 · en el mínimo: %3", de = "Gelöst: %1/%2 · minimal: %3" },
+    -- Same text as klotski.
+    ["Solved with hints in %1 moves (optimal: %2). Time: %3"] = { fr = "Résolu avec des astuces en %1 coups (optimal : %2). Temps : %3", es = "Resuelto con pistas en %1 movimientos (óptimo: %2). Tiempo: %3", de = "Mit Tipps in %1 Zügen gelöst (optimal: %2). Zeit: %3" },
 }
