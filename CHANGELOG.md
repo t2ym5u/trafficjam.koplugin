@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-11-04
+
+### Added
+- Levels solved in the optimal number of moves now get a star: the *Level* list shows ★
+  for a level solved in its optimal number of moves without a hint, ✓ for any other solve,
+  and the *Difficulty* menu shows "Solved: x/y · minimum: z". A later
+  solve in the optimal number of moves turns a ✓ into a ★; a slower one never takes a
+  ★ away. Levels solved before this version keep their ✓.
+- A win that used a hint (even one only shown, not played) now says so
+  instead of claiming the optimum: hints follow an optimal solution, so they
+  don't earn the star.
+
 ## [1.0.5] - 2026-11-04
 
 ### Fixed

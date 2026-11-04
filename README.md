@@ -23,8 +23,10 @@ classic: get the black car out of a jammed car park.
   *Beginner* 3–8, *Intermediate* 9–17, *Advanced* 18–29, *Expert* 30–50.
   Each band is ordered from its easiest level to its hardest.
 - **Progress** — "New game" opens the next level you haven't solved; the
-  *Level* menu lists every level of the difficulty (✓ on solved ones) and the
-  *Difficulty* menu shows how many you've solved.
+  *Level* menu lists every level of the difficulty (✓ on solved ones, ★ on
+  those solved in the optimal number of moves without a hint) and the
+  *Difficulty* menu shows how many you've solved, and how many in the
+  minimum.
 - **Daily Challenge** — the same level for everyone today.
 - **Hint** — two taps: the first marks the vehicle to move and outlines its
   destination, the second plays it. Hints always follow an optimal solution
