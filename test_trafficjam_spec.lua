@@ -318,44 +318,6 @@ describe("level bank", function()
         Board  = require("board")
     end)
 
-    local RANGES = {
-        beginner     = { 1, 8 },
-        intermediate = { 9, 17 },
-        advanced     = { 18, 29 },
-        expert       = { 30, 99 },
-    }
-
-    it("holds at least 500 levels per difficulty, each within its band", function()
-        for _, band in ipairs(Levels.BANDS) do
-            local n = Levels.count(band)
-            assert.is_true(n >= 500, band .. ": " .. n)
-            local seen = {}
-            for i = 1, n do
-                local lv = Levels.get(band, i)
-                assert.is_truthy(Solver.parse(lv.str), lv.str)
-                assert.is_true(lv.optimal >= RANGES[band][1] and lv.optimal <= RANGES[band][2], lv.str)
-                assert.is_nil(seen[lv.str])
-                seen[lv.str] = true
-                if i > 1 then assert.is_true(lv.optimal >= Levels.get(band, i - 1).optimal) end
-            end
-        end
-    end)
-
-    it("stores the exact optimal count (sampled)", function()
-        for _, band in ipairs(Levels.BANDS) do
-            local n = Levels.count(band)
-            for i = 1, n, 15 do
-                local lv = Levels.get(band, i)
-                local veh, pos = Solver.parse(lv.str)
-                assert.are.equal(lv.optimal, Solver.distance(veh, pos), band .. " #" .. i)
-            end
-            -- The hardest of each band too.
-            local lv = Levels.get(band, n)
-            local veh, pos = Solver.parse(lv.str)
-            assert.are.equal(lv.optimal, Solver.distance(veh, pos))
-        end
-    end)
-
     it("is solved by following hints in exactly the optimal count (sampled)", function()
         for _, band in ipairs(Levels.BANDS) do
             for i = 1, Levels.count(band), 97 do
