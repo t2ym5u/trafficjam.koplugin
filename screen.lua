@@ -233,7 +233,7 @@ function TrafficJamScreen:onCellTap(r, c)
         b:select(b.selected ~= i and i or nil)
         b.hint_shown = nil
         self.hint_cell = nil
-        self.board_widget:refresh()
+        self.board_widget:refresh(self)
         return
     end
     local sel = b.selected
@@ -242,7 +242,7 @@ function TrafficJamScreen:onCellTap(r, c)
         self:_afterMove()
     elseif sel then
         b:select(nil)
-        self.board_widget:refresh()
+        self.board_widget:refresh(self)
     end
 end
 
@@ -264,7 +264,7 @@ function TrafficJamScreen:onSwipe(r, c, dir, vdir)
     if b:slide(i, d) then
         self:_afterMove()
     else
-        self.board_widget:refresh()
+        self.board_widget:refresh(self)
     end
 end
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2026-11-18
+
+### Fixed
+- Tapping a vehicle shows the selection and the dots for the squares it
+  can reach at once, so a vehicle can be moved one square at a time by
+  tapping a dot. A swipe still sends it all the way.
+
 ## [1.1.1] - 2026-11-12
 
 ### Changed
